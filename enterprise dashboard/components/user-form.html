@@ -1,0 +1,30 @@
+<section aria-labelledby="form-heading">
+    <h3 id="form-heading">Quick Add User</h3>
+    <form action="/api/users" method="POST" novalidate>
+        <fieldset>
+            <legend>User Details</legend>
+            
+            <div class="form-group">
+                <label for="full-name">Full Name <span aria-hidden="true" style="color:red;">*</span></label>
+                <input type="text" id="full-name" name="fullName" required aria-describedby="name-help">
+                <small id="name-help">Enter the user's first and last name.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="email-address">Email Address <span aria-hidden="true" style="color:red;">*</span></label>
+                <input type="email" id="email-address" name="emailAddress" required>
+            </div>
+
+            <div class="form-group">
+                <label for="role">User Role</label>
+                <select id="role" name="role">
+                    <option value="user">Standard User</option>
+                    <option value="manager">Manager</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+        </fieldset>
+        
+        <button type="submit">Add User</button>
+    </form>
+</section>

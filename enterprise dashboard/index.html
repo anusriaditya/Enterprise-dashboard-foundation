@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Dashboard - Home</title>
+    <meta name="description" content="Accessible enterprise dashboard structural foundation">
+    <!-- Basic styling for visual structure, though focus is on HTML semantics -->
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: #333; color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .layout-container { display: flex; flex: 1; }
+        nav { width: 250px; background: #f4f4f4; padding: 1rem; border-right: 1px solid #ddd; }
+        nav ul { list-style: none; padding: 0; }
+        nav li { margin-bottom: 0.5rem; }
+        nav a { text-decoration: none; color: #333; display: block; padding: 0.5rem; }
+        nav a[aria-current="page"] { font-weight: bold; background: #e0e0e0; }
+        main { flex: 1; padding: 2rem; }
+        aside { width: 300px; padding: 1rem; background: #fafafa; border-left: 1px solid #ddd; }
+        footer { background: #222; color: #ccc; text-align: center; padding: 1rem; margin-top: auto; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
+        th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+        th { background: #f0f0f0; }
+        .form-group { margin-bottom: 1rem; }
+        fieldset { border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem; }
+        legend { font-weight: bold; }
+        label { display: block; margin-bottom: 0.25rem; font-weight: 500; }
+        input[type="text"], input[type="email"], select { width: 100%; padding: 0.5rem; box-sizing: border-box; }
+        dialog { padding: 2rem; border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        dialog::backdrop { background: rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link" style="position: absolute; left: -9999px; z-index: 999; padding: 1em; background-color: white; color: black; text-decoration: none;">Skip to main content</a>
+
+    <header>
+        <div class="logo">
+            <h1><a href="index.html" style="color: white; text-decoration: none;">EnterpriseApp</a></h1>
+        </div>
+        <div class="user-actions">
+            <button aria-label="Notifications" type="button">Notifications (3)</button>
+            <button aria-haspopup="menu" aria-expanded="false" type="button">Profile User</button>
+        </div>
+    </header>
+
+    <div class="layout-container">
+        <nav aria-label="Main Navigation">
+            <ul>
+                <li><a href="index.html" aria-current="page">Dashboard</a></li>
+                <li><a href="users.html">Users</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="reports.html">Reports</a></li>
+            </ul>
+        </nav>
+
+        <main id="main-content" tabindex="-1">
+            <header>
+                <h2>Dashboard Overview</h2>
+                <p>Welcome back, review your latest enterprise metrics.</p>
+            </header>
+
+            <section aria-labelledby="metrics-heading">
+                <h3 id="metrics-heading">Key Metrics</h3>
+                <div class="metrics-grid">
+                    <article class="metric-card">
+                        <h4>Total Revenue</h4>
+                        <p class="value">$1.2M</p>
+                    </article>
+                    <article class="metric-card">
+                        <h4>Active Users</h4>
+                        <p class="value">45,231</p>
+                    </article>
+                </div>
+            </section>
+
+            <section aria-labelledby="data-table-heading">
+                <h3 id="data-table-heading">Recent Transactions</h3>
+                <table aria-describedby="transactions-summary">
+                    <caption id="transactions-summary">A summary of the most recent financial transactions.</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Transaction ID</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">TXN-9823</th>
+                            <td>2023-10-24</td>
+                            <td>$1,500.00</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">TXN-9824</th>
+                            <td>2023-10-25</td>
+                            <td>$250.00</td>
+                            <td>Pending</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section aria-labelledby="form-heading">
+                <h3 id="form-heading">Quick Add User</h3>
+                <form action="/api/users" method="POST" novalidate>
+                    <fieldset>
+                        <legend>User Details</legend>
+                        
+                        <div class="form-group">
+                            <label for="full-name">Full Name <span aria-hidden="true" style="color:red;">*</span></label>
+                            <input type="text" id="full-name" name="fullName" required aria-describedby="name-help">
+                            <small id="name-help">Enter the user's first and last name.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email-address">Email Address <span aria-hidden="true" style="color:red;">*</span></label>
+                            <input type="email" id="email-address" name="emailAddress" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role">User Role</label>
+                            <select id="role" name="role">
+                                <option value="user">Standard User</option>
+                                <option value="manager">Manager</option>
+                                <option value="admin">Administrator</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    
+                    <button type="submit">Add User</button>
+                </form>
+            </section>
+            
+            <section aria-labelledby="modal-heading">
+                <h3 id="modal-heading">Dialog Example</h3>
+                <button type="button" onclick="document.getElementById('confirmation-dialog').showModal()">Open Confirmation Dialog</button>
+                
+                <dialog id="confirmation-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-desc">
+                    <h2 id="dialog-title">Confirm Action</h2>
+                    <p id="dialog-desc">Are you sure you want to proceed with this destructive action? This cannot be undone.</p>
+                    <form method="dialog">
+                        <button type="button" onclick="document.getElementById('confirmation-dialog').close('cancel')">Cancel</button>
+                        <button type="submit" value="confirm">Confirm</button>
+                    </form>
+                </dialog>
+            </section>
+
+        </main>
+
+        <aside aria-labelledby="aside-heading">
+            <h2 id="aside-heading">System Status</h2>
+            <ul>
+                <li>API: <strong>Operational</strong></li>
+                <li>Database: <strong>Operational</strong></li>
+            </ul>
+            
+            <article>
+                <h3>Latest Update</h3>
+                <p>Version 2.4.1 deployed successfully on 2023-10-25.</p>
+            </article>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 EnterpriseApp Inc. All rights reserved.</p>
+        <nav aria-label="Footer Navigation">
+            <ul>
+                <li style="display:inline; margin-right: 1rem;"><a href="/privacy" style="color:#ccc;">Privacy Policy</a></li>
+                <li style="display:inline;"><a href="/terms" style="color:#ccc;">Terms of Service</a></li>
+            </ul>
+        </nav>
+    </footer>
+</body>
+</html>
